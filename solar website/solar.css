@@ -1,0 +1,131 @@
+/* ======= Base ======= */
+:root{
+  --bg:#ffffff;
+  --bg-alt:#f6f8fa;
+  --text:#08205a;          /* slate-900 */
+  --muted:#475569;         /* slate-600 */
+  --border:#e2e8f0;        /* slate-200 */
+  --brand:#08205a;          /* green-500 */
+  --brand-600:#08205a;      /* green-600 */
+  --accent:#08205a;         /* sky-500 */
+  --shadow:0 10px 30px rgba(26, 42, 112, 0.08);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",sans-serif; color:var(--text); background:var(--bg);
+}
+img{max-width:100%; display:block}
+
+/* ======= Layout ======= */
+.container{width:min(1200px,92%); margin-inline:auto}
+.section{padding: clamp(48px, 7vw, 96px) 0}
+.section.alt{background:var(--bg-alt)}
+.section.tight{padding: clamp(36px,5vw,72px) 0}
+.section-head{margin-bottom:24px}
+.section-head h2{font-size:clamp(24px,3.2vw,36px); margin:0 0 8px}
+.section-head p{color:var(--muted); margin:0}
+
+.row{display:flex}
+.wrap{flex-wrap:wrap}
+.between{justify-content:space-between}
+.center{align-items:center}
+.gap-sm{gap:12px}
+.grid{display:grid; gap:20px}
+.grid.two{grid-template-columns: 1fr;}
+.grid.three{grid-template-columns: 1fr;}
+.cards-3{grid-template-columns:1fr}
+
+@media (min-width:768px){
+  .grid.two{grid-template-columns:1.2fr .8fr}
+  .grid.three{grid-template-columns: 1.3fr .7fr .7fr}
+  .cards-3{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ======= Topbar & Header ======= */
+.topbar{background:#0b1220; color:#cbd5e1; font-size:14px}
+.topbar .topbar-cta{color:#e2e8f0; text-decoration:none; border:1px solid #334155; padding:.35rem .6rem; border-radius:999px}
+
+.header{position:sticky; top:0; z-index:100; background:rgba(255,255,255,.8); backdrop-filter:saturate(180%) blur(10px); border-bottom:1px solid var(--border)}
+.logo{gap:10px; text-decoration:none; color:inherit}
+.logo img{width:36px; height:36px; border-radius:50%; object-fit:cover; box-shadow:var(--shadow)}
+.logo span{font-weight:800; letter-spacing:.2px}
+.logo .accent{color:var(--accent)}
+
+.nav{display:flex; gap:20px; align-items:center}
+.nav a{color:#101a31; text-decoration:none; padding:10px 6px; border-radius:12px}
+.nav a:hover{background:var(--bg-alt)}
+.btn{background:var(--brand); color:#fff; padding:.8rem 1.1rem; border-radius:999px; text-decoration:none; display:inline-block; font-weight:600; box-shadow:var(--shadow)}
+.btn:hover{background:var(--brand-600)}
+.btn-outline{background:#fff; color:#0f172a; border:1px solid var(--border)}
+.btn-sm{padding:.5rem .9rem}
+.btn-lg{padding: .9rem 1.2rem; font-size:1.05rem}
+
+/* Mobile nav (CSS only) */
+.nav-toggle{display:none}
+.hamburger{display:none; cursor:pointer; padding:10px; border-radius:12px}
+.hamburger span{display:block; width:26px; height:2px; background:#0f172a; margin:6px 0; transition:.2s}
+
+@media (max-width:900px){
+  .hamburger{display:block}
+  .nav{position:fixed; inset:70px 0 auto 0; background:#ffffff; border-bottom:1px solid var(--border); padding:16px 24px; transform:translateY(-120%); transition:.25s; flex-direction:column}
+  .nav a{padding:12px 8px}
+  .nav-toggle:checked ~ .hamburger span:nth-child(2){opacity:0}
+  .nav-toggle:checked ~ .hamburger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .nav-toggle:checked ~ .hamburger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+  .nav-toggle:checked ~ .nav{transform:translateY(0)}
+}
+
+/* ======= Hero ======= */
+.hero{position:relative; overflow:hidden}
+.hero-bg{position:absolute; inset:0; background:url('https://tse1.mm.bing.net/th/id/OIP.vzG9Q4UvHwaYMyjzCm2sJwHaDt?rs=1&pid=ImgDetMain&o=7&rm=3') center/cover no-repeat; filter:saturate(1.05) contrast(1.05)}
+.hero::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.2), rgba(255,255,255,0));}
+.hero-inner{position:relative; padding: clamp(80px, 12vw, 180px) 0; color:#f7f1f1}
+.hero h1{font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: clamp(28px, 5vw, 56px); margin:0 0 12px}
+.hero .lead{font-size: clamp(16px, 2.2vw, 18px); max-width:680px; margin:0 0 18px; color:#e5e7eb}
+.trust{margin-top:14px; gap:14px; align-items:center}
+.trust span{opacity:.9}
+
+/* ======= Cards & Elements ======= */
+.card{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); background:#fff}
+.card-body{padding:18px}
+.card h3{margin:0 0 6px}
+.card .link{color:var(--accent); text-decoration:none; font-weight:600}
+.card .link:hover{text-decoration:underline}
+
+.benefit-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+.benefit{background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:16px; text-align:center; box-shadow:var(--shadow)}
+.stat{font-weight:800; font-size:clamp(18px,2.8vw,28px); color:var(--brand)}
+
+/* ======= Projects ======= */
+.project{margin:0; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow)}
+.project figcaption{padding:10px 12px; font-weight:600}
+
+/* ======= Marquee ======= */
+.marquee{overflow:hidden; border:1px solid var(--border); border-radius:var(--radius); background:#fff}
+.track{display:flex; gap:36px; padding:14px 24px; animation:scroll 18s linear infinite}
+@keyframes scroll{from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ======= Forms ======= */
+.form label{display:block; font-weight:600; margin-bottom:10px}
+input, textarea{width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:12px; font:inherit}
+input:focus, textarea:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 4px rgba(14,165,233,.15)}
+.contact-card{align-self:start}
+
+/* ======= Footer ======= */
+.footer{background:#0b1220; color:#e2e8f0; padding-top:32px}
+.footer h4{margin:8px 0 8px}
+.footer .list{list-style:none; padding:0; margin:0}
+.footer .list a{color:#cbd5e1; text-decoration:none}
+.footer .list a:hover{text-decoration:underline}
+.subfooter{border-top:1px solid #1f2937; text-align:center; padding:14px; color:#f9fafc; margin-top:16px}
+
+/* ======= Utilities ======= */
+.muted{color:var(--muted)}
+.center{text-align:center}
+
+/* ======= Responsive tweaks ======= */
+@media (max-width:768px){
+  .benefit-cards{grid-template-columns:1fr}
+}
